@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- default -->
+    <color name="transparent">#00000000</color>
+    <color name="background">#fff8f8f8</color>
+    <color name="title">#ff323232</color>
+    <color name="text">#ff4d4d4d</color>
+    <color name="link">#ff4abad7</color>
+    <color name="hint">#ffdfdfdf</color>
+    <color name="border">#ffc8c8c8</color>
+    <color name="box">#ffffffff</color>
+    <!-- button -->
+    <color name="button_default_1_bg">#ffffffff</color>
+    <color name="button_default_1_border">#ffdfdfdf</color>
+    <color name="button_default_1_text">#ff464646</color>
+    <color name="button_default_0_bg">#ffefeff0</color>
+    <color name="button_default_0_border">#ffdfdfdf</color>
+    <color name="button_default_0_text">#ffc7c7c7</color>
+    <color name="button_active_1_bg">#ffff6600</color>
+    <color name="button_active_1_border">#ffff6600</color>
+    <color name="button_active_1_text">#ffffffff</color>
+    <color name="button_active_0_bg">#ffffcfa9</color>
+    <color name="button_active_0_border">#ffffc4a0</color>
+    <color name="button_active_0_text">#ffefe7d4</color>
+    <!-- toast -->
+    <color name="toast_bg">#dd000000</color>
+    <!-- progressbar -->
+    <color name="progressbar_background">@color/text</color>
+    <color name="progressbar_secondary">#80ffb600</color>
+    <color name="progressbar_progress">#ffffb600</color>
+    <!-- topbar -->
+    <color name="topbar_text">#ffffffff</color>
+    <color name="topbar_bg">#ff00668c</color>
+    <!-- tab -->
+    <color name="tab_main_0">#ff959595</color>
+    <color name="tab_main_1">#ff484848</color>
+    <color name="tab_calendar_0">#ff484848</color>
+    <color name="tab_calendar_1">#ffff6600</color>
+</resources>

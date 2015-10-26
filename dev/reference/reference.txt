@@ -1,0 +1,49 @@
+列表item_圆头像_信息提示（水滴）
+http://www.cnblogs.com/androidsj/p/3983547.html
+
+LayerDrawable层叠样式layer-list
+http://gundumw100.iteye.com/blog/896923
+
+imageview显示圆形图片
+http://www.2cto.com/kf/201312/264145.html
+
+用AndroidSDK中的Face Detector实现人脸识别
+http://www.cnblogs.com/mainroadlee/archive/2013/10/26/android_sdk_face_detection.html
+
+自定义控件-----刮刮奖
+http://www.cnblogs.com/androidsj/p/3983639.html
+
+Android ImageView图片透明区域不响应点击事件，不规则图片透明区域响应点击事件
+http://blog.csdn.net/aminfo/article/details/7872681
+
+Android双SurfaceView实现底部拍照，顶部绘图
+http://blog.csdn.net/xinzheng_wang/article/details/7712285
+
+android surfaceView 的简单使用 画图，拖动效果
+http://www.cnblogs.com/android100/p/android-surfaceView.html
+
+android图像绘制(四)自定义一个SurfaceView控件
+http://www.jb51.net/article/33328.htm
+
+Android自定义surfaceView显示多张图片
+http://www.open-open.com/lib/view/open1331301841265.html
+
+初学Android,图形图像之使用SurfaceView(三十九)
+http://blog.csdn.net/lee576/article/details/7942867
+
+Surface view 应用场景
+http://wenku.baidu.com/link?url=rjsiLrqiMzB555xaO-RT1Z0IrNT1LqsWwhquvGNqbgCdpkGkZUunBxP28a0GadT-r5fQyLLBMvJZ1Oh7-PlRo9tmceIGwYjH9Ggi8hHTXu7
+
+Android视图SurfaceView的实现原理分析
+http://www.uml.org.cn/mobiledev/201304012.asp
+
+android开发之图片的拖拉功能和两点触控,多点触摸
+http://blog.sina.com.cn/s/blog_8d955f8c0100y2xv.html
+
+Android基于多触控的图片缩放和拖动代码实现
+http://www.codefans.net/articles/584.shtml
+
+Android开发：shape和selector和layer-list的（详细说明）
+http://blog.csdn.net/brokge/article/details/9713041
+
+

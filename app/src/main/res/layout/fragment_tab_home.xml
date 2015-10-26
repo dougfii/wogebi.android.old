@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <view
+        android:id="@+id/home_topbar"
+        class="cn.gomro.gerp.android.view.Topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/space_large"
+        android:scrollbars="none">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/home_calendar"
+                    style="@style/HomeBottomTextView"
+                    android:drawableTop="@mipmap/home_calendar"
+                    android:text="@string/title_calendar"/>
+
+                <TextView
+                    android:id="@+id/home_note"
+                    style="@style/HomeBottomTextView"
+                    android:drawableTop="@mipmap/home_note"
+                    android:text="@string/title_note"/>
+
+                <TextView
+                    android:id="@+id/home_passed"
+                    style="@style/HomeBottomTextView"
+                    android:drawableTop="@mipmap/home_passed"
+                    android:text="@string/title_passed"/>
+
+                <TextView
+                    android:id="@+id/home_signed"
+                    style="@style/HomeBottomTextView"
+                    android:drawableTop="@mipmap/home_signed"
+                    android:text="@string/title_signed"/>
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>

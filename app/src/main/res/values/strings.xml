@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GERP</string>
+    <string name="crash">很抱歉，程序出现异常，即将退出</string>
+    <string name="no_gps">GPS没有开启，请开启GPS</string>
+    <string name="no_network">当前网络不可用，请检查网络连接设置</string>
+    <string name="no_location">无法定位当前位置</string>
+    <string name="no_login">账号异常，请重新登录</string>
+    <string name="no_data">暂时没有数据</string>
+    <string name="loading_load">努力加载中...</string>
+    <string name="submit_error">数据提交错误</string>
+    <string name="submit_success">发送成功</string>
+    <string name="double_click_exit">再按一次退出程序</string>
+
+    <!-- baidu location settings -->
+    <string name="loaction_prod_name">GERP Location</string>
+    <string name="notification_foreground_title">GERP正在运行中</string>
+    <string name="notification_foreground_content">感谢您使用GERP服务</string>
+    <string name="notification_network_title">GERP网络连接异常</string>
+    <string name="notification_network_content">请检查WIFI、4G/3G/2G网络是否可用</string>
+    <string name="notification_location_title">GERP无法定位</string>
+    <string name="notification_location_content">请开启GPS或连接网络</string>
+
+    <!-- button -->
+    <string name="btn_login">登录</string>
+    <string name="btn_save">保存</string>
+    <!-- select dropdown -->
+    <string name="sel_type">类型</string>
+    <string name="sel_state">状态</string>
+
+    <!--  -->
+    <string name="tab_home">首页</string>
+    <string name="tab_message">消息</string>
+    <string name="tab_discovery">探索</string>
+    <string name="tab_contact">通讯录</string>
+    <string name="tab_personal">我的</string>
+    <string name="title_calendar">日程管理</string>
+    <string name="title_calendar_add">增加日程</string>
+    <string name="title_note">备用功能</string>
+    <string name="title_passed">备用功能</string>
+    <string name="title_signed">打卡签到</string>
+    <string name="title_walkway">今天路径</string>
+</resources>

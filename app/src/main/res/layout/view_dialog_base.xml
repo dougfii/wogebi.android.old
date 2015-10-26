@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_gravity="top"
+              android:layout_marginBottom="@dimen/dialog_root_margin"
+              android:gravity="center"
+              android:padding="@dimen/space_large">
+
+    <LinearLayout
+        android:id="@+id/dialog_base_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/box_dialog_base"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/dialog_base_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dialog_base_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/space_large"
+                android:textColor="@color/title"
+                android:textSize="@dimen/font_huge"/>
+
+            <View
+                android:id="@+id/dialog_base_line"
+                style="@style/LineH1PX"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_base_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/space_large">
+
+            <TextView
+                android:id="@+id/dialog_base_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_large"
+                android:textColor="@color/text"
+                android:textSize="@dimen/font_big"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_base_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/space_large"
+            >
+
+            <Button
+                android:id="@+id/dialog_base_positive"
+                style="@style/BaseDialogButton"/>
+
+            <Button
+                android:id="@+id/dialog_base_neutral"
+                style="@style/BaseDialogButton"/>
+
+            <Button
+                android:id="@+id/dialog_base_negative"
+                style="@style/BaseDialogButton"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

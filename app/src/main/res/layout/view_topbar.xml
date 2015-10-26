@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/button_topbar"
+              android:background="@color/topbar_bg"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_topbar">
+
+        <LinearLayout
+            android:id="@+id/topbar_left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/topbar_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/topbar_back"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/topbar_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_large"
+                android:src="@mipmap/topbar_logo"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/topbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_large"
+                android:textColor="@color/topbar_text"
+                android:textSize="@dimen/font_big"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/topbar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:divider="@drawable/topbar_right_divider"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/space_normal"
+            android:showDividers="middle"
+            android:visibility="gone">
+
+            <ImageButton
+                android:id="@+id/topbar_nearby"
+                style="@style/TopbarImageButton"
+                android:src="@mipmap/topbar_location"
+                android:visibility="gone"/>
+
+            <ImageButton
+                android:id="@+id/topbar_refresh"
+                style="@style/TopbarImageButton"
+                android:src="@mipmap/topbar_refresh"
+                android:visibility="gone"/>
+
+            <ImageButton
+                android:id="@+id/topbar_add"
+                style="@style/TopbarImageButton"
+                android:src="@mipmap/topbar_add"
+                android:visibility="gone"/>
+
+            <ImageButton
+                android:id="@+id/topbar_more"
+                style="@style/TopbarImageButton"
+                android:src="@mipmap/topbar_more"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/topbar_line"
+        style="@style/LineH1PX"/>
+</LinearLayout>

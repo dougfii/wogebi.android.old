@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <View style="@style/LineH1PX"/>
+
+    <RadioGroup
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/main_tab_home"
+            style="@style/TabMain"
+            android:checked="true"
+            android:drawableTop="@drawable/tab_home"
+            android:text="@string/tab_home"/>
+
+        <RadioButton
+            android:id="@+id/main_tab_message"
+            style="@style/TabMain"
+            android:drawableTop="@drawable/tab_message"
+            android:text="@string/tab_message"/>
+
+        <RadioButton
+            android:id="@+id/main_tab_discovery"
+            style="@style/TabMain"
+            android:drawableTop="@drawable/tab_discovery"
+            android:text="@string/tab_discovery"/>
+
+        <RadioButton
+            android:id="@+id/main_tab_contact"
+            style="@style/TabMain"
+            android:drawableTop="@drawable/tab_contact"
+            android:text="@string/tab_contact"/>
+
+        <RadioButton
+            android:id="@+id/main_tab_personal"
+            style="@style/TabMain"
+            android:drawableTop="@drawable/tab_personal"
+            android:text="@string/tab_personal"/>
+    </RadioGroup>
+
+</LinearLayout>

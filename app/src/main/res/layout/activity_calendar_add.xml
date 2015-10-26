@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <view
+        android:id="@+id/calendar_add_topbar"
+        class="cn.gomro.gerp.android.view.Topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/space_large"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_normal"
+                        android:text="日　期"/>
+
+                    <EditText
+                        android:id="@+id/calendar_add_date"
+                        style="@style/DefaultEditText.Standard"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/space_normal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_normal"
+                        android:text="状　态"/>
+
+                    <Spinner
+                        android:id="@+id/calendar_add_state"
+                        style="@style/DefaultSpinner.Standard"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:prompt="@string/sel_state"
+                        android:spinnerMode="dialog"/>
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/space_normal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_normal"
+                        android:text="客　户"/>
+
+                    <EditText
+                        android:id="@+id/calendar_add_customer"
+                        style="@style/DefaultEditText.Standard"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/space_normal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_normal"
+                        android:text="联系人"/>
+
+                    <EditText
+                        android:id="@+id/calendar_add_contacts"
+                        style="@style/DefaultEditText.Standard"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/space_normal">
+
+                    <EditText
+                        android:id="@+id/calendar_add_content"
+                        style="@style/DefaultEditText.Standard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_span="2"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:hint="请输入谈何事"
+                        android:minLines="8"/>
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/space_normal">
+
+                    <EditText
+                        android:id="@+id/calendar_add_plan"
+                        style="@style/DefaultEditText.Standard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_span="2"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:hint="请输入后续动作"
+                        android:minLines="8"/>
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/space_normal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_normal"
+                        android:text="路　线"/>
+
+                    <EditText
+                        android:id="@+id/calendar_add_walkway"
+                        style="@style/DefaultEditText.Standard"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/space_normal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_normal"
+                        android:text="里　程"/>
+
+                    <EditText
+                        android:id="@+id/calendar_add_distance"
+                        style="@style/DefaultEditText.Standard"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/space_normal">
+
+                    <EditText
+                        android:id="@+id/calendar_add_memo"
+                        style="@style/DefaultEditText.Standard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_span="2"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:hint="请输入备注"
+                        android:minLines="8"/>
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

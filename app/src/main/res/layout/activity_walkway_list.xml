@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <view
+        android:id="@+id/walkway_list_topbar"
+        class="cn.gomro.gerp.android.view.Topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ListView
+        android:id="@+id/walkway_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <View style="@style/LineH1PX"/>
+
+    <Button
+        android:id="@+id/walkway_list_refresh"
+        style="@style/ActiveButton"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="@dimen/space_large"
+        android:text="刷新数据"/>
+</LinearLayout>
+

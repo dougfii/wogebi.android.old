@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <view
+        android:id="@+id/signed_topbar"
+        class="cn.gomro.gerp.android.view.Topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/signed_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:clickable="true"/>
+
+    <View style="@style/LineH1PX"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/space_large">
+
+        <Button
+            android:id="@+id/signed_loc"
+            style="@style/DefaultButton"
+            android:layout_width="@dimen/button_height"
+            android:layout_height="@dimen/button_height"
+            android:text="定位"/>
+
+        <Button
+            android:id="@+id/signed_sign"
+            style="@style/ActiveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/space_large"
+            android:layout_marginRight="@dimen/space_large"
+            android:layout_weight="1"
+            android:text="@string/title_signed"/>
+
+        <Button
+            android:id="@+id/signed_walkway"
+            style="@style/DefaultButton"
+            android:layout_width="@dimen/button_height"
+            android:layout_height="@dimen/button_height"
+            android:text="路径"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/personal_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/topbar_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <view
+            android:id="@+id/personal_topbar_avatar"
+            class="cn.gomro.gerp.android.view.RoundedImageView"
+            android:layout_width="@dimen/button_topbar"
+            android:layout_height="@dimen/button_topbar"
+            android:layout_margin="@dimen/space_large"
+            android:src="@mipmap/avatar"
+            app:corner_radius="@dimen/radius"/>
+
+        <RelativeLayout
+            android:id="@+id/personal_topbar_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/personal_topbar_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textSize="@dimen/font_big"/>
+
+            <TextView
+                android:id="@+id/personal_topbar_serial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/personal_topbar_user"
+                android:textSize="@dimen/font_small"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="资料 >"
+                android:textSize="@dimen/font_small"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/space_large"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/personal_item_config"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/PersonalListLeftTextView"
+                    android:drawableLeft="@mipmap/personal_config"
+                    android:text="设置"/>
+
+                <TextView
+                    style="@style/PersonalListRightTextView"
+                    android:drawableRight="@mipmap/arrow_right"/>
+            </RelativeLayout>
+
+            <View style="@style/LineH1PX"/>
+
+            <RelativeLayout
+                android:id="@+id/personal_item_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/PersonalListLeftTextView"
+                    android:drawableLeft="@mipmap/personal_feedback"
+                    android:text="意见反馈"/>
+
+                <TextView
+                    style="@style/PersonalListRightTextView"
+                    android:drawableRight="@mipmap/arrow_right"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/personal_item_update"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/PersonalListLeftTextView"
+                    android:drawableLeft="@mipmap/personal_update"
+                    android:text="新版本检查"/>
+
+                <TextView
+                    android:id="@+id/personal_detail_version"
+                    style="@style/PersonalListRightTextView"
+                    android:drawableRight="@mipmap/arrow_right"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/personal_item_about"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/PersonalListLeftTextView"
+                    android:drawableLeft="@mipmap/personal_about"
+                    android:text="关于我们"/>
+
+                <TextView
+                    style="@style/PersonalListRightTextView"
+                    android:drawableRight="@mipmap/arrow_right"/>
+            </RelativeLayout>
+
+            <View style="@style/LineH1PX"/>
+
+            <RelativeLayout
+                android:id="@+id/personal_item_logout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/PersonalListLeftTextView"
+                    android:drawableLeft="@mipmap/personal_logout"
+                    android:text="退出登录"/>
+
+                <TextView
+                    style="@style/PersonalListRightTextView"
+                    android:drawableRight="@mipmap/arrow_right"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
