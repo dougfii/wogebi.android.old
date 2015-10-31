@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.wogebi.android.log.L;
+import com.dougfii.android.core.log.L;
 import com.wogebi.android.service.WalkwayService;
 
 public class WalkwayShutdownBroadcastReceiver extends BroadcastReceiver

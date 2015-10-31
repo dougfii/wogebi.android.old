@@ -9,42 +9,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.wogebi.android.BaseApplication;
-import com.wogebi.android.BaseFragment;
+import com.dougfii.android.core.base.BaseFragment;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.view.Topbar;
 
 //注意：如果先BindService再StartService---就必须先Unbind然后Stop---所以一般会先StartService
-public class TabHomeFragment extends BaseFragment
-{
+public class TabHomeFragment extends BaseFragment<AppApplication> {
     private TextView calendar;
     private TextView note;
     private TextView passed;
     private TextView signed;
 
-    public TabHomeFragment()
-    {
+    public TabHomeFragment() {
         super();
         //init();
     }
 
     @SuppressLint("ValidFragment")
-    public TabHomeFragment(BaseApplication application, Activity activity, Context context)
-    {
+    public TabHomeFragment(AppApplication application, Activity activity, Context context) {
         super(application, activity, context);
         //init();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tab_home, container, false);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
-    protected void initViews()
-    {
+    protected void initViews() {
         Topbar topbar = (Topbar) findViewById(R.id.home_topbar);
         topbar.setLogo(true);
         topbar.setLine(false);
@@ -57,8 +52,7 @@ public class TabHomeFragment extends BaseFragment
     }
 
     @Override
-    protected void initEvents()
-    {
+    protected void initEvents() {
         MyOnClickListener my = new MyOnClickListener();
         calendar.setOnClickListener(my);
         note.setOnClickListener(my);
@@ -66,13 +60,10 @@ public class TabHomeFragment extends BaseFragment
         signed.setOnClickListener(my);
     }
 
-    private class MyOnClickListener implements View.OnClickListener
-    {
+    private class MyOnClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View v)
-        {
-            switch (v.getId())
-            {
+        public void onClick(View v) {
+            switch (v.getId()) {
                 case R.id.home_calendar:
                     startActivity(CalendarActivity.class);
                     break;

@@ -4,12 +4,11 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
+import com.dougfii.android.core.log.L;
+import com.dougfii.android.core.utils.DateTimeUtils;
 import com.wogebi.android.db.WalkwayDBHelper;
 import com.wogebi.android.entity.WalkwayEntity;
-import com.wogebi.android.log.L;
 import com.wogebi.android.service.WalkwayService;
-import com.wogebi.android.utils.DateTimeUtils;
-
 
 public class WalkwayListener extends LocationListener
 {

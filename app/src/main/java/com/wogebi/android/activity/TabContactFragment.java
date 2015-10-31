@@ -8,34 +8,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wogebi.android.BaseApplication;
-import com.wogebi.android.BaseFragment;
+import com.dougfii.android.core.base.BaseFragment;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.view.Topbar;
 
-public class TabContactFragment extends BaseFragment
-{
-    public TabContactFragment()
-    {
+public class TabContactFragment extends BaseFragment<AppApplication> {
+    public TabContactFragment() {
         super();
     }
 
     @SuppressLint("ValidFragment")
-    public TabContactFragment(BaseApplication application, Activity activity, Context context)
-    {
+    public TabContactFragment(AppApplication application, Activity activity, Context context) {
         super(application, activity, context);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tab_contact, container, false);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
-    protected void initViews()
-    {
+    protected void initViews() {
         Topbar topbar = (Topbar) findViewById(R.id.contact_topbar);
         topbar.setLogo(true);
         topbar.setLine(false);
@@ -43,7 +38,6 @@ public class TabContactFragment extends BaseFragment
     }
 
     @Override
-    protected void initEvents()
-    {
+    protected void initEvents() {
     }
 }

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">dougfii.android.core</string>
+    <string name="crash">很抱歉，程序出现异常，即将退出</string>
+    <string name="loading_load">努力加载中...</string>
+</resources>

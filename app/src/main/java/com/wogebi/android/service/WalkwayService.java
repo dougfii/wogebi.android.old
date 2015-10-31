@@ -28,27 +28,27 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.wogebi.android.BaseService;
+import com.dougfii.android.core.base.BaseService;
+import com.dougfii.android.core.entity.ResultEntity;
+import com.dougfii.android.core.entity.SimpleEntity;
+import com.dougfii.android.core.log.L;
+import com.dougfii.android.core.utils.DateTimeUtils;
+import com.dougfii.android.core.utils.HardwareUtils;
+import com.dougfii.android.core.utils.HttpUtils;
+import com.dougfii.android.core.utils.NotificationUtils;
+import com.dougfii.android.core.utils.ServiceUtils;
+import com.dougfii.android.core.utils.Utils;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.activity.MainActivity;
 import com.wogebi.android.db.WalkwayDBHelper;
 import com.wogebi.android.entity.ResolveEntity;
-import com.wogebi.android.entity.ResultEntity;
-import com.wogebi.android.entity.SimpleEntity;
 import com.wogebi.android.entity.WalkwayEntity;
 import com.wogebi.android.listener.LocationListener;
 import com.wogebi.android.listener.WalkwayListener;
-import com.wogebi.android.log.L;
 import com.wogebi.android.model.Constants;
-import com.wogebi.android.utils.DateTimeUtils;
-import com.wogebi.android.utils.HardwareUtils;
-import com.wogebi.android.utils.HttpUtils;
-import com.wogebi.android.utils.NotificationUtils;
-import com.wogebi.android.utils.ServiceUtils;
-import com.wogebi.android.utils.Utils;
 
-public class WalkwayService extends BaseService
-{
+public class WalkwayService extends BaseService<AppApplication> {
     public static final String TAG = "WalkwayService";
 
     public static final String PROCESS_NAME_WALKWAY = "com.wogebi.com.wogebi.android:walkway";
@@ -98,19 +98,16 @@ public class WalkwayService extends BaseService
     private int max = 3;
 
     @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler()
-    {
+    private Handler handler = new Handler() {
         @Override
-        public void handleMessage(Message msg)
-        {
-            switch (msg.what)
-            {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
                 case LocationListener.MSG_LOCATION_SERVER_ERROR:
                 case LocationListener.MSG_LOCATION_NETWORK_EXCEPTION:
                 case LocationListener.MSG_LOCATION_CRITERIA_EXCEPTION:
                 case LocationListener.MSG_LOCATION_OFFILINE_FIAL:
                 case LocationListener.MSG_LOCATION_NETWORK_CONNECT_FAIL:
-                    notification.sendNetworkNotification();
+                    notification.sendNetworkNotification(R.mipmap.logo, getString(R.string.notification_network_title), getString(R.string.notification_network_title), getString(R.string.notification_network_content));
                     break;
 
                 case MSG_CLIENT_REGISTER: //绑定客户端
@@ -123,14 +120,10 @@ public class WalkwayService extends BaseService
 
                 case MSG_SEDN_COMMOND://客户端的通信数据
                     int last = msg.arg1; //保留最后一次跟服务器连接的客户端的标识
-                    for (int i = clients.size() - 1; i >= 0; i--)
-                    {
-                        try
-                        {
+                    for (int i = clients.size() - 1; i >= 0; i--) {
+                        try {
                             clients.get(i).send(Message.obtain(null, MSG_SEDN_COMMOND, last, 0));//发送消息给客户端
-                        }
-                        catch (RemoteException e)
-                        {
+                        } catch (RemoteException e) {
                             clients.remove(i);//远程客户端出错，从列表中移除，遍历列表以保证内部循环安全运行
                         }
                     }
@@ -155,15 +148,13 @@ public class WalkwayService extends BaseService
 
     @Nullable
     @Override
-    public IBinder onBind(Intent intent)
-    {
+    public IBinder onBind(Intent intent) {
         L.i(TAG, "onBind -----");
         return messenger.getBinder(); //返回值可用来进行Activity与Service之间的交互
     }
 
     @Override
-    public void onCreate()
-    {
+    public void onCreate() {
         notification = new NotificationUtils(this);
 
         L.i(TAG, "onCreate - 初始化定位服务");
@@ -179,22 +170,19 @@ public class WalkwayService extends BaseService
     }
 
     @Override
-    public void onLowMemory()
-    {
+    public void onLowMemory() {
         L.i(TAG, "onLowMemory");
         keep();
     }
 
     @Override
-    public void onTrimMemory(int level)
-    {
+    public void onTrimMemory(int level) {
         L.i(TAG, "onTrimMemory");
         keep();
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId)
-    {
+    public int onStartCommand(Intent intent, int flags, int startId) {
         //设置为前台进程，尽量避免被系统干掉
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 new Intent(this, MainActivity.class), 0);
@@ -210,14 +198,12 @@ public class WalkwayService extends BaseService
 
         L.i(TAG, "onStartCommand begin =====");
 
-        if (intent != null)
-        {
+        if (intent != null) {
             start = intent.getIntExtra(START_MODE, START_UNKNOWN);
 
             L.i(TAG, "onStartCommand - " + START_MODE + ":" + start);
 
-            if (start == START_MANUAL || start == START_ALARM)
-            {
+            if (start == START_MANUAL || start == START_ALARM) {
                 //手动启动
 //                boolean run = ServiceUtils.isServiceRunning(this, "com.baidu.location.f");//判断服务是否已开启
 //                if (!run || (location != null && !location.isStarted()))
@@ -227,14 +213,11 @@ public class WalkwayService extends BaseService
 //                }
 
                 boolean run = ServiceUtils.isProcessRunning(this, WalkwayService.PROCESS_NAME_LOCATION);
-                if (!run || (location != null && !location.isStarted()))
-                {
+                if (!run || (location != null && !location.isStarted())) {
                     L.i(TAG, "onStartCommand - 开启定位服务");
                     location.start();//服务没启动,开启定位服务
                 }
-            }
-            else
-            {
+            } else {
                 L.i(TAG, "onStartCommand - 开机自动启动服务");
                 //开机自动启动
 
@@ -244,11 +227,9 @@ public class WalkwayService extends BaseService
                 num++;
 
                 // 第一次，1分钟后检测网络---这个线程只会执行一次
-                handler.postDelayed(new Runnable()
-                {
+                handler.postDelayed(new Runnable() {
                     @Override
-                    public void run()
-                    {
+                    public void run() {
                         //第一次检测网络
                         checkLocator();
                         handler.sendEmptyMessage(MSG_LOCATOR_CHECK);
@@ -266,15 +247,12 @@ public class WalkwayService extends BaseService
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         L.i(TAG, "onDestory ==========");
 
-        if (location != null && location.isStarted())
-        {
+        if (location != null && location.isStarted()) {
             location.stop();
-            if (listener != null)
-            {
+            if (listener != null) {
                 location.unRegisterLocationListener(listener);
             }
         }
@@ -282,15 +260,13 @@ public class WalkwayService extends BaseService
         SharedPreferences sp = getSharedPreferences(TAG, Context.MODE_PRIVATE);
         int exit = sp.getInt(EXIT_MODE, EXIT_UNKNOWN);
 
-        if (exit == EXIT_SHUTDOWN)
-        {
+        if (exit == EXIT_SHUTDOWN) {
             sp.edit().putInt(EXIT_MODE, EXIT_MANUAL).commit();
             System.exit(0);
             return;
         }
 
-        if (wake != null && wake.isHeld())
-        {
+        if (wake != null && wake.isHeld()) {
             wake.release();
             wake = null;
         }
@@ -301,8 +277,7 @@ public class WalkwayService extends BaseService
         startService(intent);
     }
 
-    private void initLocationService()
-    {
+    private void initLocationService() {
         location = new LocationClient(this);
         listener = new WalkwayListener(this, handler);
         location.registerLocationListener(listener);
@@ -310,8 +285,7 @@ public class WalkwayService extends BaseService
         setLocationOption();
     }
 
-    private void setLocationOption()
-    {
+    private void setLocationOption() {
         //高精度定位模式：这种定位模式下，会同时使用网络定位和GPS定位，优先返回最高精度的定位结果；
         //低功耗定位模式：这种定位模式下，不会使用GPS，只会使用网络定位（Wi-Fi和基站定位）；
         //仅用设备定位模式：这种定位模式下，不需要连接网络，只使用GPS进行定位，这种模式下不支持室内环境的定位。
@@ -334,48 +308,36 @@ public class WalkwayService extends BaseService
     }
 
     //检测定位是否可用
-    private void checkLocator()
-    {
-        if (HardwareUtils.isLocatorAvailable(this))
-        {
+    private void checkLocator() {
+        if (HardwareUtils.isLocatorAvailable(this)) {
             isLocator = true;
             location.start();
-        }
-        else
-        {
-            notification.sendLocatorNotification();
+        } else {
+            notification.sendLocatorNotification(R.mipmap.logo, getString(R.string.notification_location_title), getString(R.string.notification_location_title), getString(R.string.notification_location_content));
         }
     }
 
     //定时检测网络是否可用
-    private void checkLocatorTimer()
-    {
+    private void checkLocatorTimer() {
         // 第一检测网络，直接过了。（已打开） ---检查定位服务
         boolean run = ServiceUtils.isProcessRunning(this, PROCESS_NAME_LOCATION);
 
-        if (!isLocator || !run)
-        {
+        if (!isLocator || !run) {
             // 打开定时器，每个一段时间提醒一次
             final Timer timer = new Timer();
-            timer.schedule(new TimerTask()
-            {
+            timer.schedule(new TimerTask() {
                 @Override
-                public void run()
-                {
+                public void run() {
                     num++;
 
                     checkLocator();
 
                     boolean run = ServiceUtils.isProcessRunning(getApplicationContext(), PROCESS_NAME_LOCATION);
-                    if (isLocator && run)
-                    {
+                    if (isLocator && run) {
                         notification.cancel(NotificationUtils.LOCATOR_UNAVAILABLE);
                         timer.cancel();
-                    }
-                    else
-                    {
-                        if (num == max)
-                        {
+                    } else {
+                        if (num == max) {
                             // 检查网络，提醒了用户三次依然未开，退出应用。
                             notification.cancel(NotificationUtils.LOCATOR_UNAVAILABLE);
                             timer.cancel();
@@ -390,18 +352,13 @@ public class WalkwayService extends BaseService
     }
 
     //更新数据，发送给客户端
-    private void update(Message msg)
-    {
+    private void update(Message msg) {
         msg.what = MSG_SEDN_COMMOND;// 改变消息类型
         // 将MSG发送给已经绑定的客户端
-        for (int i = clients.size() - 1; i >= 0; i--)
-        {
-            try
-            {
+        for (int i = clients.size() - 1; i >= 0; i--) {
+            try {
                 clients.get(i).send(msg);//将消息发送给客户端
-            }
-            catch (RemoteException e)
-            {
+            } catch (RemoteException e) {
                 clients.remove(i);//远程客户端出错，从列表中移除，遍历列表以保证内部循环安全运行
             }
         }
@@ -410,17 +367,13 @@ public class WalkwayService extends BaseService
     }
 
     //定时推送数据至服务器
-    private void send()
-    {
+    private void send() {
         Timer timer = new Timer();
-        timer.schedule(new TimerTask()
-        {
+        timer.schedule(new TimerTask() {
             @Override
-            public void run()
-            {
+            public void run() {
                 int hour = DateTimeUtils.getCurrentHour();
-                if (hour >= 8 && hour <= 18)
-                {
+                if (hour >= 8 && hour <= 18) {
                     push();
                 }
             }
@@ -428,33 +381,27 @@ public class WalkwayService extends BaseService
     }
 
     //推送数据至服务器
-    private void push()
-    {
+    private void push() {
         L.i(TAG, "push ******************** " + DateTimeUtils.getCurrentDateTime());
 
         SharedPreferences preferences = getSharedPreferences("gerp_login", MODE_PRIVATE);
         final int uid = preferences.getInt("uid", 0);
-        if (uid <= 0)
-        {
+        if (uid <= 0) {
             L.i(TAG, "push error: uid not exist");
             return;
         }
 
-        if (!HardwareUtils.isNetworkAvailable(getApplicationContext()))
-        {
+        if (!HardwareUtils.isNetworkAvailable(getApplicationContext())) {
             L.i(TAG, "push error: network not connect");
             return;
         }
 
         L.i(TAG, "push process ********** " + DateTimeUtils.getCurrentDateTime());
 
-        addTask(new AsyncTask<Void, Void, Boolean>()
-                {
+        addTask(new AsyncTask<Void, Void, Boolean>() {
                     @Override
-                    protected Boolean doInBackground(Void... params)
-                    {
-                        try
-                        {
+                    protected Boolean doInBackground(Void... params) {
+                        try {
                             int last = 0;
                             StringBuilder sb = new StringBuilder();
 
@@ -462,25 +409,18 @@ public class WalkwayService extends BaseService
                             Map<String, String> locs = new LinkedHashMap<>();
                             List<WalkwayEntity> entities = new ArrayList<>();
                             entities.addAll(WalkwayDBHelper.query(getApplicationContext(), "id ASC"));
-                            if (entities.size() > 0)
-                            {
-                                for (WalkwayEntity entity : entities)
-                                {
+                            if (entities.size() > 0) {
+                                for (WalkwayEntity entity : entities) {
                                     last = entity.getId();
-                                    if (locs.containsKey(entity.getDate()))
-                                    {
+                                    if (locs.containsKey(entity.getDate())) {
                                         locs.put(entity.getDate(), locs.get(entity.getDate()) + entity.toString() + "|");
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         locs.put(entity.getDate(), entity.toString() + "|");
                                     }
                                 }
 
-                                if (locs.size() > 0)
-                                {
-                                    for (Map.Entry<String, String> entry : locs.entrySet())
-                                    {
+                                if (locs.size() > 0) {
+                                    for (Map.Entry<String, String> entry : locs.entrySet()) {
                                         String key = entry.getKey();
                                         String val = entry.getValue();
                                         sb.append(key).append("*").append(val).append("!");
@@ -502,30 +442,20 @@ public class WalkwayService extends BaseService
                             L.i(TAG, json);
 
                             ret = (new ResolveEntity()).doWalkwayAdd(json);
-                            if (ret != null && ret.getCode() == 1)
-                            {
+                            if (ret != null && ret.getCode() == 1) {
                                 int lastid = Utils.toInteger(ret.getMsg());
-                                if (lastid > 0 && lastid == last)
-                                {
+                                if (lastid > 0 && lastid == last) {
                                     L.i(TAG, "success push data, last id: " + lastid);
                                     WalkwayDBHelper.delete(getApplicationContext(), lastid);
-                                }
-                                else
-                                {
+                                } else {
                                     L.i(TAG, "last id return error");
                                 }
-                            }
-                            else if (ret != null && ret.getCode() == 0)
-                            {
+                            } else if (ret != null && ret.getCode() == 0) {
                                 L.i(TAG, ret.getMsg());
-                            }
-                            else
-                            {
+                            } else {
                                 L.i(TAG, getString(R.string.submit_error));
                             }
-                        }
-                        catch (Exception ex)
-                        {
+                        } catch (Exception ex) {
                             L.e(TAG, ex.getCause());
                         }
 
@@ -535,28 +465,21 @@ public class WalkwayService extends BaseService
         );
     }
 
-    private IAliveService core = new IAliveService.Stub()
-    {
+    private IAliveService core = new IAliveService.Stub() {
         @Override
-        public void alive() throws RemoteException
-        {
+        public void alive() throws RemoteException {
             Intent intent = new Intent(getBaseContext(), CoreService.class);
             getBaseContext().startService(intent);
         }
     };
 
-    private void keep()
-    {
+    private void keep() {
         boolean run = ServiceUtils.isProcessRunning(this, CoreService.PROCESS_NAME_CORE);
-        if (!run)
-        {
-            try
-            {
+        if (!run) {
+            try {
                 L.i(TAG, "重新启动 CoreService");
                 core.alive();
-            }
-            catch (RemoteException e)
-            {
+            } catch (RemoteException e) {
                 //
             }
         }

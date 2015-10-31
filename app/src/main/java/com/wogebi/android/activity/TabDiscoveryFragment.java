@@ -11,34 +11,29 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import com.wogebi.android.BaseApplication;
-import com.wogebi.android.BaseFragment;
+import com.dougfii.android.core.base.BaseFragment;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.view.Topbar;
 
-public class TabDiscoveryFragment extends BaseFragment
-{
-    public TabDiscoveryFragment()
-    {
+public class TabDiscoveryFragment extends BaseFragment<AppApplication> {
+    public TabDiscoveryFragment() {
         super();
     }
 
     @SuppressLint("ValidFragment")
-    public TabDiscoveryFragment(BaseApplication application, Activity activity, Context context)
-    {
+    public TabDiscoveryFragment(AppApplication application, Activity activity, Context context) {
         super(application, activity, context);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tab_discovery, container, false);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
-    protected void initViews()
-    {
+    protected void initViews() {
         Topbar topbar = (Topbar) findViewById(R.id.discovery_topbar);
         topbar.setLogo(true);
         topbar.setLine(false);
@@ -46,15 +41,12 @@ public class TabDiscoveryFragment extends BaseFragment
     }
 
     @Override
-    protected void initEvents()
-    {
+    protected void initEvents() {
     }
 
-    private void test()
-    {
+    private void test() {
         TableLayout table = (TableLayout) findViewById(R.id.mytable);
-        for (int i = 0; i < 3; i++)
-        {
+        for (int i = 0; i < 3; i++) {
             TableRow row = new TableRow(context);
 
             Button btn = new Button(context);

@@ -13,14 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.wogebi.android.BaseApplication;
-import com.wogebi.android.BaseFragment;
+import com.dougfii.android.core.base.BaseFragment;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.model.Model;
 import com.wogebi.android.view.RoundedImageView;
 
-public class TabPersonalFragment extends BaseFragment
-{
+public class TabPersonalFragment extends BaseFragment<AppApplication> {
     private LinearLayout topbar;
 
     // Items
@@ -30,27 +29,23 @@ public class TabPersonalFragment extends BaseFragment
     private RelativeLayout about;
     private RelativeLayout logout;
 
-    public TabPersonalFragment()
-    {
+    public TabPersonalFragment() {
         super();
     }
 
     @SuppressLint("ValidFragment")
-    public TabPersonalFragment(BaseApplication application, Activity activity, Context context)
-    {
+    public TabPersonalFragment(AppApplication application, Activity activity, Context context) {
         super(application, activity, context);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tab_personal, container, false);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
-    protected void initViews()
-    {
+    protected void initViews() {
         topbar = (LinearLayout) findViewById(R.id.personal_topbar);
         RoundedImageView avatar = (RoundedImageView) findViewById(R.id.personal_topbar_avatar);
         RelativeLayout info = (RelativeLayout) findViewById(R.id.personal_topbar_info);
@@ -71,8 +66,7 @@ public class TabPersonalFragment extends BaseFragment
     }
 
     @Override
-    protected void initEvents()
-    {
+    protected void initEvents() {
         MyOnClickListener my = new MyOnClickListener();
         topbar.setOnClickListener(my);
         config.setOnClickListener(my);
@@ -83,15 +77,12 @@ public class TabPersonalFragment extends BaseFragment
         logout.setOnClickListener(my);
     }
 
-    private class MyOnClickListener implements View.OnClickListener
-    {
+    private class MyOnClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View v)
-        {
+        public void onClick(View v) {
             int id = v.getId();
 
-            switch (id)
-            {
+            switch (id) {
                 case R.id.personal_item_config:
                     break;
 
@@ -114,13 +105,10 @@ public class TabPersonalFragment extends BaseFragment
         }
     }
 
-    private void logout()
-    {
-        showDialog("提示", "您确认要退出登录吗？", "确定", new DialogInterface.OnClickListener()
-        {
+    private void logout() {
+        showDialog("提示", "您确认要退出登录吗？", "确定", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
+            public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 Model.My = null;
 
@@ -131,11 +119,9 @@ public class TabPersonalFragment extends BaseFragment
 
                 System.exit(0);
             }
-        }, "取消", new DialogInterface.OnClickListener()
-        {
+        }, "取消", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
+            public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- font -->
+    <dimen name="font_huge">20sp</dimen>
+    <dimen name="font_large">18sp</dimen>
+    <dimen name="font_big">16sp</dimen>
+    <dimen name="font_normal">14sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+    <dimen name="font_tiny">10sp</dimen>
+    <!-- space(padding, margin, radius) -->
+    <dimen name="space_huge">15dp</dimen>
+    <dimen name="space_large">10dp</dimen>
+    <dimen name="space_big">8dp</dimen>
+    <dimen name="space_normal">5dp</dimen>
+    <dimen name="space_small">3dp</dimen>
+    <!-- other -->
+    <dimen name="border">1px</dimen>
+    <dimen name="radius">4dp</dimen>
+    <dimen name="loading">24dp</dimen>
+    <!-- button -->
+    <dimen name="button_height">45dp</dimen>
+    <dimen name="button_topbar">47dp</dimen>
+    <!-- edittext -->
+    <dimen name="edittext_height">35dp</dimen>
+    <!-- spinner -->
+    <dimen name="spinner_height">35dp</dimen>
+    <!-- dialog -->
+    <dimen name="dialog_root_margin">60dp</dimen>
+</resources>

@@ -8,34 +8,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wogebi.android.BaseApplication;
-import com.wogebi.android.BaseFragment;
+import com.dougfii.android.core.base.BaseFragment;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.view.Topbar;
 
-public class TabMessageFragment extends BaseFragment
-{
-    public TabMessageFragment()
-    {
+public class TabMessageFragment extends BaseFragment<AppApplication> {
+    public TabMessageFragment() {
         super();
     }
 
     @SuppressLint("ValidFragment")
-    public TabMessageFragment(BaseApplication application, Activity activity, Context context)
-    {
+    public TabMessageFragment(AppApplication application, Activity activity, Context context) {
         super(application, activity, context);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tab_message, container, false);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
-    protected void initViews()
-    {
+    protected void initViews() {
         Topbar topbar = (Topbar) findViewById(R.id.message_topbar);
         topbar.setLogo(true);
         topbar.setLine(false);
@@ -43,7 +38,6 @@ public class TabMessageFragment extends BaseFragment
     }
 
     @Override
-    protected void initEvents()
-    {
+    protected void initEvents() {
     }
 }

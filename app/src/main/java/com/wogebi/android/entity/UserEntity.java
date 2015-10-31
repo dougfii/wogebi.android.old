@@ -1,5 +1,7 @@
 package com.wogebi.android.entity;
 
+import com.dougfii.android.core.entity.BaseEntity;
+
 public class UserEntity extends BaseEntity
 {
     private int id = 0;

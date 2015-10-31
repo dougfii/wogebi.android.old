@@ -10,9 +10,9 @@ import android.os.IBinder;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import com.dougfii.android.core.log.L;
+import com.dougfii.android.core.utils.ApiUtils;
 import com.wogebi.android.activity.MainActivity;
-import com.wogebi.android.log.L;
-import com.wogebi.android.utils.ApiUtils;
 
 public class ForegroundService extends Service
 {

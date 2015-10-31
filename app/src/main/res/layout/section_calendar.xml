@@ -5,7 +5,7 @@
 
     <view
         android:id="@+id/calendar_listview"
-        class="cn.gomro.gerp.android.view.PullToRefreshListView"
+        class="com.wogebi.android.view.RefreshView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:cacheColorHint="@color/transparent"

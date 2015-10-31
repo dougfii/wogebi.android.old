@@ -3,6 +3,8 @@ package com.wogebi.android.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.dougfii.android.core.entity.BaseEntity;
+
 import java.io.Serializable;
 
 public class WalkwayEntity extends BaseEntity implements Parcelable, Serializable

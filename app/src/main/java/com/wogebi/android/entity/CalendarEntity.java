@@ -1,5 +1,7 @@
 package com.wogebi.android.entity;
 
+import com.dougfii.android.core.entity.BaseEntity;
+
 import java.io.Serializable;
 
 public class CalendarEntity extends BaseEntity implements Serializable

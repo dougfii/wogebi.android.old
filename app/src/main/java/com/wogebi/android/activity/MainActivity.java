@@ -10,15 +10,16 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.wogebi.android.BaseActivity;
-import com.wogebi.android.BaseFragment;
+import com.dougfii.android.core.base.BaseActivity;
+import com.dougfii.android.core.base.BaseFragment;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
-import com.wogebi.android.adapter.TabMainAdapter;
+import com.wogebi.android.adapter.TabMainRadioAdapter;
 
-public class MainActivity extends BaseActivity
+public class MainActivity extends BaseActivity<AppApplication>
 {
     public List<BaseFragment> fragments = new ArrayList<>();
-    private TabMainAdapter adapter;
+    private TabMainRadioAdapter adapter;
     private boolean exit = false;
 
     @Override
@@ -40,7 +41,7 @@ public class MainActivity extends BaseActivity
         fragments.add(new TabContactFragment(application, this, this));
         fragments.add(new TabPersonalFragment(application, this, this));
 
-        adapter = new TabMainAdapter(this, fragments, R.id.content, tabs);
+        adapter = new TabMainRadioAdapter(this, fragments, R.id.content, tabs);
     }
 
     @Override

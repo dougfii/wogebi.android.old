@@ -21,25 +21,25 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 
-import com.wogebi.android.BaseActivity;
+import com.dougfii.android.core.base.BaseActivity;
+import com.dougfii.android.core.entity.ResultEntity;
+import com.dougfii.android.core.entity.SimpleEntity;
+import com.dougfii.android.core.log.L;
+import com.dougfii.android.core.utils.DateTimeUtils;
+import com.dougfii.android.core.utils.HardwareUtils;
+import com.dougfii.android.core.utils.HttpUtils;
+import com.dougfii.android.core.utils.ServiceUtils;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.entity.ResolveEntity;
-import com.wogebi.android.entity.ResultEntity;
-import com.wogebi.android.entity.SimpleEntity;
 import com.wogebi.android.listener.LocationListener;
 import com.wogebi.android.listener.SignedListener;
-import com.wogebi.android.log.L;
 import com.wogebi.android.model.Constants;
 import com.wogebi.android.model.Model;
 import com.wogebi.android.service.WalkwayService;
-import com.wogebi.android.utils.DateTimeUtils;
-import com.wogebi.android.utils.HardwareUtils;
-import com.wogebi.android.utils.HttpUtils;
-import com.wogebi.android.utils.ServiceUtils;
 import com.wogebi.android.view.Topbar;
 
-public class SignedActivity extends BaseActivity
-{
+public class SignedActivity extends BaseActivity<AppApplication> {
     private static final String TAG = "SignedActivity";
 
     private static final String URL = Constants.URL_SERVER + Constants.MODEL_SIGNED_ADD;
@@ -63,13 +63,10 @@ public class SignedActivity extends BaseActivity
     private SignedListener listener;
 
     @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler()
-    {
+    private Handler handler = new Handler() {
         @Override
-        public void handleMessage(Message msg)
-        {
-            switch (msg.what)
-            {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
                 case WalkwayService.MSG_SEND_CLIENT:
 
                     Bundle bundle = msg.getData();
@@ -98,16 +95,14 @@ public class SignedActivity extends BaseActivity
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         init();
     }
 
     @Override
-    protected void initViews()
-    {
+    protected void initViews() {
         setContentView(R.layout.activity_signed);
 
         mapView = (MapView) findViewById(R.id.signed_map);
@@ -128,16 +123,14 @@ public class SignedActivity extends BaseActivity
     }
 
     @Override
-    protected void initEvents()
-    {
+    protected void initEvents() {
         MyOnClickListener my = new MyOnClickListener();
         sign.setOnClickListener(my);
         loc.setOnClickListener(my);
         walkway.setOnClickListener(my);
     }
 
-    private void init()
-    {
+    private void init() {
         L.i(TAG, "onCreate - 初始化定位服务");
         initLocationService();// 初始化定位服务，配置相应参数
 
@@ -145,8 +138,7 @@ public class SignedActivity extends BaseActivity
         loc();
     }
 
-    private void initLocationService()
-    {
+    private void initLocationService() {
         location = new LocationClient(this);
         listener = new SignedListener(this, handler);
         location.registerLocationListener(listener);
@@ -154,8 +146,7 @@ public class SignedActivity extends BaseActivity
         setLocationOption();
     }
 
-    private void setLocationOption()
-    {
+    private void setLocationOption() {
         //高精度定位模式：这种定位模式下，会同时使用网络定位和GPS定位，优先返回最高精度的定位结果；
         //低功耗定位模式：这种定位模式下，不会使用GPS，只会使用网络定位（Wi-Fi和基站定位）；
         //仅用设备定位模式：这种定位模式下，不需要连接网络，只使用GPS进行定位，这种模式下不支持室内环境的定位。
@@ -177,15 +168,12 @@ public class SignedActivity extends BaseActivity
         location.setLocOption(option);
     }
 
-    private void loc()
-    {
-        if (location != null && location.isStarted())
-        {
+    private void loc() {
+        if (location != null && location.isStarted()) {
             location.stop();
         }
 
-        if (lat > 0 && lng > 0)
-        {
+        if (lat > 0 && lng > 0) {
             LatLng point = new LatLng(lat, lng);//定义Maker坐标点
             BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap.loc);//构建Marker图标
             OverlayOptions options = new MarkerOptions().position(point).icon(bitmap);//构建MarkerOption，用于在地图上添加Marker
@@ -198,13 +186,10 @@ public class SignedActivity extends BaseActivity
         }
     }
 
-    private class MyOnClickListener implements View.OnClickListener
-    {
+    private class MyOnClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View v)
-        {
-            switch (v.getId())
-            {
+        public void onClick(View v) {
+            switch (v.getId()) {
                 case R.id.signed_sign:
 
                     loc();
@@ -227,57 +212,46 @@ public class SignedActivity extends BaseActivity
         }
     }
 
-    private void start()
-    {
+    private void start() {
         boolean run = ServiceUtils.isServiceRunning(this, "com.baidu.location.f");//判断服务是否已开启
-        if (!run || (location != null && !location.isStarted()))
-        {
+        if (!run || (location != null && !location.isStarted())) {
             L.i(TAG, "onStartCommand - 开启定位服务");
             location.start();//服务没启动,开启定位服务
         }
     }
 
-    private void signed()
-    {
-        if (!Model.IsLogin())
-        {
+    private void signed() {
+        if (!Model.IsLogin()) {
             showToast(R.string.no_login);
             return;
         }
 
-        if (!(lat > 0 && lng > 0))
-        {
+        if (!(lat > 0 && lng > 0)) {
             showToast(R.string.no_location);
             return;
         }
 
-        if (!HardwareUtils.isNetworkAvailable(this))
-        {
+        if (!HardwareUtils.isNetworkAvailable(this)) {
             showToast(R.string.no_network);
             return;
         }
 
-        if (!Model.IsLogin())
-        {
+        if (!Model.IsLogin()) {
             showToast(R.string.no_login);
             return;
         }
 
-        addTask(new AsyncTask<Void, Void, Boolean>()
-        {
+        addTask(new AsyncTask<Void, Void, Boolean>() {
 
             @Override
-            protected void onPreExecute()
-            {
+            protected void onPreExecute() {
                 super.onPreExecute();
                 showLoading(getString(R.string.loading_load));
             }
 
             @Override
-            protected Boolean doInBackground(Void... params)
-            {
-                try
-                {
+            protected Boolean doInBackground(Void... params) {
+                try {
                     String url = URL + "&uid=" + Model.My.getId() + "&code=" + code + "&lat=" + lat + "&lng=" + lng + "&date=" + DateTimeUtils.getCurrentDate();
                     L.i(TAG, url);
 
@@ -286,13 +260,10 @@ public class SignedActivity extends BaseActivity
                     L.i(TAG, json);
 
                     ret = (new ResolveEntity()).doSignedAdd(json);
-                    if (ret != null)
-                    {
+                    if (ret != null) {
                         return true;
                     }
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     //
                 }
 
@@ -300,21 +271,15 @@ public class SignedActivity extends BaseActivity
             }
 
             @Override
-            protected void onPostExecute(Boolean result)
-            {
+            protected void onPostExecute(Boolean result) {
                 super.onPostExecute(result);
                 dismissLoading();
 
-                if (result && ret.getCode() == 1)
-                {
+                if (result && ret.getCode() == 1) {
                     showToast(getString(R.string.title_signed) + "成功");
-                }
-                else if (result && ret.getCode() == 0)
-                {
+                } else if (result && ret.getCode() == 0) {
                     showToast(ret.getMsg());
-                }
-                else
-                {
+                } else {
                     showToast(R.string.submit_error);
                 }
             }
@@ -322,10 +287,8 @@ public class SignedActivity extends BaseActivity
     }
 
     @Override
-    protected void onDestroy()
-    {
-        if (location != null && location.isStarted())
-        {
+    protected void onDestroy() {
+        if (location != null && location.isStarted()) {
             location.stop();
         }
 

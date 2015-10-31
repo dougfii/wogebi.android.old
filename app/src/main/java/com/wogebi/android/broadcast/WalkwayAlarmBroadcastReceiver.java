@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.wogebi.android.log.L;
+import com.dougfii.android.core.log.L;
 import com.wogebi.android.service.WalkwayService;
 
 public class WalkwayAlarmBroadcastReceiver extends BroadcastReceiver

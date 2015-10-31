@@ -16,23 +16,23 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.wogebi.android.BaseActivity;
+import com.dougfii.android.core.base.BaseActivity;
+import com.dougfii.android.core.dialog.CancelDatePickerDialog;
+import com.dougfii.android.core.entity.ResultEntity;
+import com.dougfii.android.core.entity.SimpleEntity;
+import com.dougfii.android.core.log.L;
+import com.dougfii.android.core.utils.DateTimeUtils;
+import com.dougfii.android.core.utils.HardwareUtils;
+import com.dougfii.android.core.utils.HttpUtils;
+import com.dougfii.android.core.utils.Utils;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
-import com.wogebi.android.dialog.CancelDatePickerDialog;
 import com.wogebi.android.entity.ResolveEntity;
-import com.wogebi.android.entity.ResultEntity;
-import com.wogebi.android.entity.SimpleEntity;
-import com.wogebi.android.log.L;
 import com.wogebi.android.model.Constants;
 import com.wogebi.android.model.Model;
-import com.wogebi.android.utils.DateTimeUtils;
-import com.wogebi.android.utils.HttpUtils;
-import com.wogebi.android.utils.HardwareUtils;
-import com.wogebi.android.utils.Utils;
 import com.wogebi.android.view.Topbar;
 
-public class CalendarAddActivity extends BaseActivity
-{
+public class CalendarAddActivity extends BaseActivity<AppApplication> {
     private static final String TAG = "CalendarAddActivity";
 
     private static final String URL = Constants.URL_SERVER + Constants.MODEL_CALENDAR_ADD;
@@ -52,8 +52,7 @@ public class CalendarAddActivity extends BaseActivity
     private CancelDatePickerDialog dialog;
 
     @Override
-    protected void initViews()
-    {
+    protected void initViews() {
         setContentView(R.layout.activity_calendar_add);
 
         Topbar topbar = (Topbar) findViewById(R.id.calendar_add_topbar);
@@ -91,26 +90,20 @@ public class CalendarAddActivity extends BaseActivity
     }
 
     @Override
-    protected void initEvents()
-    {
-        save.setOnClickListener(new View.OnClickListener()
-        {
+    protected void initEvents() {
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 add();
             }
         });
 
         state.setOnItemSelectedListener(new StateSelectedListener());
 
-        date.setOnTouchListener(new View.OnTouchListener()
-        {
+        date.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-                if (event.getAction() == MotionEvent.ACTION_UP)
-                {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     dialog.show();
                 }
 
@@ -119,10 +112,8 @@ public class CalendarAddActivity extends BaseActivity
         });
     }
 
-    private void add()
-    {
-        if (!HardwareUtils.isNetworkAvailable(this))
-        {
+    private void add() {
+        if (!HardwareUtils.isNetworkAvailable(this)) {
             showToast(R.string.no_network);
             return;
         }
@@ -138,37 +129,30 @@ public class CalendarAddActivity extends BaseActivity
         final String _distance = distance.getText().toString();
         final String _memo = memo.getText().toString();
 
-        if (_customer.equals(""))
-        {
+        if (_customer.equals("")) {
             showToast("请输入客户");
             return;
         }
-        if (_contacts.equals(""))
-        {
+        if (_contacts.equals("")) {
             showToast("请输入联系人");
             return;
         }
-        if (_content.equals(""))
-        {
+        if (_content.equals("")) {
             showToast("请输入谈何事");
             return;
         }
 
-        addTask(new AsyncTask<Void, Void, Boolean>()
-        {
+        addTask(new AsyncTask<Void, Void, Boolean>() {
 
             @Override
-            protected void onPreExecute()
-            {
+            protected void onPreExecute() {
                 super.onPreExecute();
                 showLoading(getString(R.string.loading_load));
             }
 
             @Override
-            protected Boolean doInBackground(Void... params)
-            {
-                try
-                {
+            protected Boolean doInBackground(Void... params) {
+                try {
                     String url = URL;//+ "&uid=" + _uid + "&date=" + _date + "&place=" + _place + "&typeid=" + _typeid + "&stateid=" + _stateid + "&content=" + _content;
                     L.i(TAG, url);
 
@@ -190,13 +174,10 @@ public class CalendarAddActivity extends BaseActivity
                     L.i(TAG, json);
 
                     ret = (new ResolveEntity()).getSimple(json);
-                    if (ret != null)
-                    {
+                    if (ret != null) {
                         return true;
                     }
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     //
                 }
 
@@ -204,50 +185,38 @@ public class CalendarAddActivity extends BaseActivity
             }
 
             @Override
-            protected void onPostExecute(Boolean result)
-            {
+            protected void onPostExecute(Boolean result) {
                 super.onPostExecute(result);
                 dismissLoading();
 
-                if (result && ret.getCode() == 1)
-                {
+                if (result && ret.getCode() == 1) {
                     showToast("增加成功");
                     finish();
-                }
-                else if (result && ret.getCode() == 0)
-                {
+                } else if (result && ret.getCode() == 0) {
                     showToast(ret.getMsg());
-                }
-                else
-                {
+                } else {
                     showToast(R.string.submit_error);
                 }
             }
         });
     }
 
-    private void setDate(int year, int month, int day)
-    {
+    private void setDate(int year, int month, int day) {
         date.setText(DateTimeUtils.formatDate(year, month, day));
     }
 
-    class StateSelectedListener implements AdapterView.OnItemSelectedListener
-    {
+    class StateSelectedListener implements AdapterView.OnItemSelectedListener {
         @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-        {
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parent)
-        {
+        public void onNothingSelected(AdapterView<?> parent) {
         }
     }
 
-    class MyOnDateSetListener implements DatePickerDialog.OnDateSetListener
-    {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        {
+    class MyOnDateSetListener implements DatePickerDialog.OnDateSetListener {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             setDate(year, monthOfYear + 1, dayOfMonth);
         }
     }

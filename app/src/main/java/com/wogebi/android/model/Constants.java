@@ -1,8 +1,8 @@
 package com.wogebi.android.model;
 
-import java.io.File;
+import com.dougfii.android.core.utils.FileUtils;
 
-import com.wogebi.android.utils.FileUtils;
+import java.io.File;
 
 public class Constants
 {
@@ -10,7 +10,7 @@ public class Constants
     public static String UPDATE_XML = "http://gerp.greentown.cn/distribute/android.xml";
     public static final String UPDATE_FILENAME = "gerp.apk";
     //directory
-    public static final String DIR_APP = FileUtils.getPath() + "gerp" + File.separator;
+    public static final String DIR_APP = FileUtils.getPath() + "wogebi" + File.separator;
     public static final String DIR_CRASH = DIR_APP + "log" + File.separator + "crash" + File.separator;    // 异常日志目录
     public static final String DIR_LOG = DIR_APP + "log" + File.separator + "log" + File.separator;    // 一般日志目录
     public static final String DIR_TEMP = DIR_APP + "temp" + File.separator;    // 临时目录

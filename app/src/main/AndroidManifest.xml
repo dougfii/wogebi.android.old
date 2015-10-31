@@ -61,7 +61,7 @@
         android:smallScreens="true"/>
 
     <application
-        android:name="com.wogebi.com.wogebi.android.BaseApplication"
+        android:name=".AppApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/logo"
@@ -71,38 +71,37 @@
         android:theme="@style/Theme.App">
         <!-- activity -->
         <activity
-            android:name="com.wogebi.com.wogebi.android.activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.wogebi.com.wogebi.android.activity.MainActivity"/>
+        <activity android:name=".activity.MainActivity"/>
         <activity
-            android:name="com.wogebi.com.wogebi.android.activity.CalendarActivity"
+            android:name=".activity.CalendarActivity"
             android:theme="@style/Theme.Pager"/>
         <activity
-            android:name="com.wogebi.com.wogebi.android.activity.CalendarAddActivity"
+            android:name=".activity.CalendarAddActivity"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.wogebi.com.wogebi.android.activity.SignedActivity"/>
-        <activity android:name="com.wogebi.com.wogebi.android.activity.WalkwayActivity"/>
-        <activity android:name="com.wogebi.com.wogebi.android.activity.WalkwayListActivity"/>
-        <activity android:name="com.wogebi.com.wogebi.android.activity.TestActivity"/>
+        <activity android:name=".activity.SignedActivity"/>
+        <activity android:name=".activity.WalkwayListActivity"/>
+        <activity android:name=".activity.TestActivity"/>
         <!-- receiver -->
-        <receiver android:name="com.wogebi.com.wogebi.android.broadcast.WalkwayBootBroadcastReceiver">
+        <receiver android:name=".broadcast.WalkwayBootBroadcastReceiver">
             <intent-filter android:priority="0x7fffffff">
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <category android:name="android.intent.category.HOME"/>
             </intent-filter>
         </receiver>
-        <receiver android:name="com.wogebi.com.wogebi.android.broadcast.WalkwayShutdownBroadcastReceiver">
+        <receiver android:name=".broadcast.WalkwayShutdownBroadcastReceiver">
             <intent-filter android:priority="0x7fffffff">
                 <action android:name="android.intent.action.ACTION_SHUTDOWN"/>
                 <category android:name="android.intent.category.HOME"/>
             </intent-filter>
         </receiver>
-        <receiver android:name="com.wogebi.com.wogebi.android.broadcast.WalkwayAlarmBroadcastReceiver">
+        <receiver android:name=".broadcast.WalkwayAlarmBroadcastReceiver">
             <intent-filter android:priority="0x7fffffff">
                 <!-- 以下是为了 service 复活 -->
                 <action android:name="com.wogebi.portal.broadcast.WalkwayAlarmBroadcastReceiver.ACTION_WALKWAY_ALARM"/>
@@ -117,12 +116,12 @@
         </receiver>
         <!-- service -->
         <service
-            android:name="com.wogebi.com.wogebi.android.service.CoreService"
+            android:name=".service.CoreService"
             android:enabled="true"
             android:priority="1000"
             android:process=":core"></service>
         <service
-            android:name="com.wogebi.com.wogebi.android.service.WalkwayService"
+            android:name=".service.WalkwayService"
             android:enabled="true"
             android:priority="1000"
             android:process=":walkway">

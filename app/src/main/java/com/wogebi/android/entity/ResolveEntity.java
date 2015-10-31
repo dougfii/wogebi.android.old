@@ -1,13 +1,16 @@
 package com.wogebi.android.entity;
 
+import com.dougfii.android.core.entity.ResultEntity;
+import com.dougfii.android.core.entity.ResultsEntity;
+import com.dougfii.android.core.entity.SimpleEntity;
+import com.dougfii.android.core.log.L;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.wogebi.android.log.L;
 
 public class ResolveEntity
 {

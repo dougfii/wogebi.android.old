@@ -15,7 +15,7 @@
 
         <view
             android:id="@+id/personal_topbar_avatar"
-            class="cn.gomro.gerp.android.view.RoundedImageView"
+            class="com.wogebi.android.view.RoundedImageView"
             android:layout_width="@dimen/button_topbar"
             android:layout_height="@dimen/button_topbar"
             android:layout_margin="@dimen/space_large"

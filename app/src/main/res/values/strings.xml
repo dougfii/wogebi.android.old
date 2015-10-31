@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GERP</string>
-    <string name="crash">很抱歉，程序出现异常，即将退出</string>
+    <string name="app_name">我隔壁</string>
+
     <string name="no_gps">GPS没有开启，请开启GPS</string>
     <string name="no_network">当前网络不可用，请检查网络连接设置</string>
     <string name="no_location">无法定位当前位置</string>

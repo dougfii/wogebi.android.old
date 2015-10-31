@@ -6,19 +6,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.wogebi.android.BaseActivity;
+import com.dougfii.android.core.base.BaseActivity;
+import com.dougfii.android.core.utils.HttpUtils;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
-import com.wogebi.android.utils.HttpUtils;
 
-public class TestActivity extends BaseActivity
-{
+public class TestActivity extends BaseActivity<AppApplication> {
     private TextView text;
     private Button button;
     private String val;
 
     @Override
-    protected void initViews()
-    {
+    protected void initViews() {
         setContentView(R.layout.activity_test);
 
         text = (TextView) findViewById(R.id.test_text);
@@ -27,19 +26,15 @@ public class TestActivity extends BaseActivity
     }
 
     @Override
-    protected void initEvents()
-    {
+    protected void initEvents() {
         MyOnClickListener my = new MyOnClickListener();
         button.setOnClickListener(my);
     }
 
-    private class MyOnClickListener implements View.OnClickListener
-    {
+    private class MyOnClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View v)
-        {
-            switch (v.getId())
-            {
+        public void onClick(View v) {
+            switch (v.getId()) {
                 case R.id.test_button:
                     doit();
                     break;
@@ -47,13 +42,10 @@ public class TestActivity extends BaseActivity
         }
     }
 
-    private void doit()
-    {
-        addTask(new AsyncTask<Void, Void, Boolean>()
-        {
+    private void doit() {
+        addTask(new AsyncTask<Void, Void, Boolean>() {
             @Override
-            protected Boolean doInBackground(Void... params)
-            {
+            protected Boolean doInBackground(Void... params) {
                 HttpUtils http = new HttpUtils();
                 val = http.get("http://www.baidu.com");
 
@@ -61,8 +53,7 @@ public class TestActivity extends BaseActivity
             }
 
             @Override
-            protected void onPostExecute(Boolean aBoolean)
-            {
+            protected void onPostExecute(Boolean aBoolean) {
                 super.onPostExecute(aBoolean);
 
                 text.setText(val);

@@ -6,7 +6,7 @@
 
     <view
         android:id="@+id/message_topbar"
-        class="cn.gomro.gerp.android.view.Topbar"
+        class="com.wogebi.android.view.Topbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -5,14 +5,14 @@ import android.support.v4.view.ViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.wogebi.android.BaseActivity;
+import com.dougfii.android.core.base.BaseActivity;
+import com.dougfii.android.core.view.pager.TabPager;
+import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.adapter.TabCalendarAdapter;
-import com.wogebi.android.pager.TabPager;
 import com.wogebi.android.view.Topbar;
 
-public class CalendarActivity extends BaseActivity
-{
+public class CalendarActivity extends BaseActivity<AppApplication> {
     private static final String TAG = "CalendarActivity";
 
     public final String[] TITLES = new String[]{"我的日程", "全部日程"};
@@ -25,8 +25,7 @@ public class CalendarActivity extends BaseActivity
     private int currentPage = 0;
 
     @Override
-    protected void initViews()
-    {
+    protected void initViews() {
         setContentView(R.layout.activity_calendar);
 
         topbar = (Topbar) findViewById(R.id.calendar_topbar);
@@ -34,8 +33,7 @@ public class CalendarActivity extends BaseActivity
         topbar.setLine(true);
         topbar.setTitle(TITLES[0]);
 
-        for (int i = 0; i < TITLES.length; i++)
-        {
+        for (int i = 0; i < TITLES.length; i++) {
             sections.add(new CalendarSection(application, this, this, topbar, i));
         }
 
@@ -47,43 +45,34 @@ public class CalendarActivity extends BaseActivity
     }
 
     @Override
-    protected void initEvents()
-    {
-        tab.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
-        {
+    protected void initEvents() {
+        tab.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int i, float v, int i1)
-            {
+            public void onPageScrolled(int i, float v, int i1) {
             }
 
             @Override
-            public void onPageSelected(int i)
-            {
+            public void onPageSelected(int i) {
                 topbar.onTopbarRefreshComplete();
                 topbar.setTitle(TITLES[i]);
                 currentPage = i;
             }
 
             @Override
-            public void onPageScrollStateChanged(int i)
-            {
+            public void onPageScrollStateChanged(int i) {
             }
         });
 
-        topbar.setOnTopbarRefreshClickListener(new Topbar.OnTopbarRefreshClickListener()
-        {
+        topbar.setOnTopbarRefreshClickListener(new Topbar.OnTopbarRefreshClickListener() {
             @Override
-            public void onTopbarRefreshClick()
-            {
+            public void onTopbarRefreshClick() {
                 sections.get(currentPage).onHeaderManualRefresh();
             }
         });
 
-        topbar.setOnTopbarAddClickListener(new Topbar.OnTopbarAddClickListener()
-        {
+        topbar.setOnTopbarAddClickListener(new Topbar.OnTopbarAddClickListener() {
             @Override
-            public void onTopbarAddClick()
-            {
+            public void onTopbarAddClick() {
                 startActivity(CalendarAddActivity.class);
             }
         });
