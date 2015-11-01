@@ -18,6 +18,7 @@ import com.dougfii.android.core.entity.ResultsEntity;
 import com.dougfii.android.core.log.L;
 import com.dougfii.android.core.utils.HttpUtils;
 import com.dougfii.android.core.utils.Utils;
+import com.dougfii.android.core.view.Topbar;
 import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.adapter.CalendarAdapterBase;
@@ -26,7 +27,6 @@ import com.wogebi.android.entity.ResolveEntity;
 import com.wogebi.android.model.Constants;
 import com.wogebi.android.model.Model;
 import com.wogebi.android.view.RefreshView;
-import com.wogebi.android.view.Topbar;
 
 public class CalendarSection extends BaseFragment<AppApplication> implements AdapterView.OnItemClickListener, RefreshView.OnRefreshListener, RefreshView.OnManualRefreshListener, RefreshView.OnCancelListener, RefreshView.OnMoreListener {
     private static final String TAG = "CalendarSection";

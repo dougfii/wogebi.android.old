@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dougfii.android.core.base.BaseFragment;
+import com.dougfii.android.core.view.Topbar;
 import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
-import com.wogebi.android.view.Topbar;
 
 //注意：如果先BindService再StartService---就必须先Unbind然后Stop---所以一般会先StartService
 public class TabHomeFragment extends BaseFragment<AppApplication> {

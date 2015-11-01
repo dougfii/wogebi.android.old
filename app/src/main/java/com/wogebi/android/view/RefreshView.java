@@ -386,7 +386,7 @@ public class RefreshView extends ListView implements AbsListView.OnScrollListene
                 loading.setVisibility(View.GONE);
                 arrow.clearAnimation();
                 loading.clearAnimation();
-                arrow.setImageResource(R.mipmap.arrow_down);
+                arrow.setImageResource(R.mipmap.arrow);
                 notice.setVisibility(View.VISIBLE);
                 break;
 

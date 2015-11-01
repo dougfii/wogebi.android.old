@@ -5,7 +5,7 @@ import android.support.v4.view.ViewPager;
 /**
  * Created by momo on 15/11/1.
  */
-public interface Pager extends ViewPager.OnPageChangeListener {
+public interface IPager extends ViewPager.OnPageChangeListener {
     void setViewPager(ViewPager view);
 
     void setViewPager(ViewPager view, int position);

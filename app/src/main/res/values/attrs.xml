@@ -10,7 +10,7 @@
         <attr name="android:scaleType"/>
     </declare-styleable>
     <!-- pager -->
-    <declare-styleable name="Pager">
+    <declare-styleable name="IPager">
         <attr name="TabPager" format="reference"/>
     </declare-styleable>
 </resources>

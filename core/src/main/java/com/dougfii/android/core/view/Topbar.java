@@ -1,4 +1,4 @@
-package com.wogebi.android.view;
+package com.dougfii.android.core.view;
 
 import android.content.Context;
 import android.support.annotation.DrawableRes;
@@ -14,10 +14,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.wogebi.android.R;
+import com.dougfii.android.core.R;
 
-public class Topbar extends LinearLayout
-{
+/**
+ * Created by momo on 15/11/1.
+ */
+public class Topbar extends LinearLayout {
     private Context context;
     private View view;
 
@@ -44,22 +46,19 @@ public class Topbar extends LinearLayout
     private OnTopbarAddClickListener onTopbarAddClickListener;
     private OnTopbarMoreClickListener onTopbarMoreClickListener;
 
-    public Topbar(Context context)
-    {
+    public Topbar(Context context) {
         super(context);
         this.context = context;
         initViews();
     }
 
-    public Topbar(Context context, AttributeSet attrs)
-    {
+    public Topbar(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         initViews();
     }
 
-    private void initViews()
-    {
+    private void initViews() {
         view = LayoutInflater.from(context).inflate(R.layout.view_topbar, null);
         addView(view);
 
@@ -81,91 +80,71 @@ public class Topbar extends LinearLayout
         refreshState = RefreshState.NONE;
     }
 
-    public void addRightView(View view)
-    {
+    public void addRightView(View view) {
         right.setVisibility(View.VISIBLE);
         right.addView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
-    public Button addRightDefaultButton(CharSequence text)
-    {
+    public Button addRightDefaultButton(CharSequence text) {
         Button button = (Button) LayoutInflater.from(context).inflate(R.layout.view_topbar_button_default, null);
         button.setText(text);
         addRightView(button);
         return button;
     }
 
-    public Button addRightActionButton(CharSequence text)
-    {
+    public Button addRightActionButton(CharSequence text) {
         Button button = (Button) LayoutInflater.from(context).inflate(R.layout.view_topbar_button_active, null);
         button.setText(text);
         addRightView(button);
         return button;
     }
 
-    public ImageButton addRightImageButton(@DrawableRes int resId)
-    {
+    public ImageButton addRightImageButton(@DrawableRes int resId) {
         ImageButton button = (ImageButton) LayoutInflater.from(context).inflate(R.layout.view_topbar_imagebutton_default, null);
         button.setImageResource(resId);
         addRightView(button);
         return button;
     }
 
-    public void setTitle(CharSequence text)
-    {
+    public void setTitle(CharSequence text) {
         left.setVisibility(View.VISIBLE);
         title.setVisibility(View.VISIBLE);
         title.setText(text);
     }
 
-    public void setLogo(boolean show)
-    {
-        if (show)
-        {
+    public void setLogo(boolean show) {
+        if (show) {
             left.setVisibility(View.VISIBLE);
             logo.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             logo.setVisibility(View.GONE);
         }
     }
 
-    public void setLine(boolean show)
-    {
-        if (show)
-        {
+    public void setLine(boolean show) {
+        if (show) {
             line.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             line.setVisibility(View.GONE);
         }
     }
 
-    public void onTopbarRefreshComplete()
-    {
-        if (onTopbarRefreshClickListener != null && refreshState != RefreshState.NONE)
-        {
+    public void onTopbarRefreshComplete() {
+        if (onTopbarRefreshClickListener != null && refreshState != RefreshState.NONE) {
             refreshState = RefreshState.NONE;
             refresh.clearAnimation();
         }
     }
 
-    public void setOnTopbarBackClickListener(OnTopbarBackClickListener l)
-    {
-        if (l != null)
-        {
+    public void setOnTopbarBackClickListener(OnTopbarBackClickListener l) {
+        if (l != null) {
             left.setVisibility(View.VISIBLE);
             back.setVisibility(View.VISIBLE);
             onTopbarBackClickListener = l;
-            left.setOnClickListener(new OnClickListener()
-            {
+            left.setOnClickListener(new OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    if (onTopbarBackClickListener != null)
-                    {
+                public void onClick(View v) {
+                    if (onTopbarBackClickListener != null) {
                         onTopbarBackClickListener.onTopbarBackClick();
                     }
                 }
@@ -173,20 +152,15 @@ public class Topbar extends LinearLayout
         }
     }
 
-    public void setOnTopbarNearbyClickListener(OnTopbarNearbyClickListener l)
-    {
-        if (l != null)
-        {
+    public void setOnTopbarNearbyClickListener(OnTopbarNearbyClickListener l) {
+        if (l != null) {
             right.setVisibility(View.VISIBLE);
             nearby.setVisibility(View.VISIBLE);
             onTopbarNearbyClickListener = l;
-            nearby.setOnClickListener(new OnClickListener()
-            {
+            nearby.setOnClickListener(new OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    if (onTopbarNearbyClickListener != null)
-                    {
+                public void onClick(View v) {
+                    if (onTopbarNearbyClickListener != null) {
                         onTopbarNearbyClickListener.onTopbarNearbyClick();
                     }
                 }
@@ -194,20 +168,15 @@ public class Topbar extends LinearLayout
         }
     }
 
-    public void setOnTopbarRefreshClickListener(OnTopbarRefreshClickListener l)
-    {
-        if (l != null)
-        {
+    public void setOnTopbarRefreshClickListener(OnTopbarRefreshClickListener l) {
+        if (l != null) {
             right.setVisibility(View.VISIBLE);
             refresh.setVisibility(View.VISIBLE);
             onTopbarRefreshClickListener = l;
-            refresh.setOnClickListener(new OnClickListener()
-            {
+            refresh.setOnClickListener(new OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    if (onTopbarRefreshClickListener != null && refreshState != RefreshState.REFRESHING)
-                    {
+                public void onClick(View v) {
+                    if (onTopbarRefreshClickListener != null && refreshState != RefreshState.REFRESHING) {
                         refreshState = RefreshState.REFRESHING;
                         refresh.clearAnimation();
                         refresh.startAnimation(refreshAnimation);
@@ -218,20 +187,15 @@ public class Topbar extends LinearLayout
         }
     }
 
-    public void setOnTopbarAddClickListener(OnTopbarAddClickListener l)
-    {
-        if (l != null)
-        {
+    public void setOnTopbarAddClickListener(OnTopbarAddClickListener l) {
+        if (l != null) {
             right.setVisibility(View.VISIBLE);
             add.setVisibility(View.VISIBLE);
             onTopbarAddClickListener = l;
-            add.setOnClickListener(new OnClickListener()
-            {
+            add.setOnClickListener(new OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    if (onTopbarAddClickListener != null)
-                    {
+                public void onClick(View v) {
+                    if (onTopbarAddClickListener != null) {
                         onTopbarAddClickListener.onTopbarAddClick();
                     }
                 }
@@ -239,20 +203,15 @@ public class Topbar extends LinearLayout
         }
     }
 
-    public void setOnTopbarMoreClickListener(OnTopbarMoreClickListener l)
-    {
-        if (l != null)
-        {
+    public void setOnTopbarMoreClickListener(OnTopbarMoreClickListener l) {
+        if (l != null) {
             right.setVisibility(View.VISIBLE);
             more.setVisibility(View.VISIBLE);
             onTopbarMoreClickListener = l;
-            more.setOnClickListener(new OnClickListener()
-            {
+            more.setOnClickListener(new OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    if (onTopbarMoreClickListener != null)
-                    {
+                public void onClick(View v) {
+                    if (onTopbarMoreClickListener != null) {
                         onTopbarMoreClickListener.onTopbarMoreClick();
                     }
                 }
@@ -260,33 +219,27 @@ public class Topbar extends LinearLayout
         }
     }
 
-    public interface OnTopbarBackClickListener
-    {
+    public interface OnTopbarBackClickListener {
         void onTopbarBackClick();
     }
 
-    public interface OnTopbarNearbyClickListener
-    {
+    public interface OnTopbarNearbyClickListener {
         void onTopbarNearbyClick();
     }
 
-    public interface OnTopbarRefreshClickListener
-    {
+    public interface OnTopbarRefreshClickListener {
         void onTopbarRefreshClick();
     }
 
-    public interface OnTopbarAddClickListener
-    {
+    public interface OnTopbarAddClickListener {
         void onTopbarAddClick();
     }
 
-    public interface OnTopbarMoreClickListener
-    {
+    public interface OnTopbarMoreClickListener {
         void onTopbarMoreClick();
     }
 
-    public enum RefreshState
-    {
+    public enum RefreshState {
         NONE, // 初始状态
         REFRESHING; // 正在刷新
     }

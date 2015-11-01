@@ -28,10 +28,10 @@ import com.baidu.mapapi.model.LatLng;
 import com.dougfii.android.core.base.BaseActivity;
 import com.dougfii.android.core.log.L;
 import com.dougfii.android.core.utils.ServiceUtils;
+import com.dougfii.android.core.view.Topbar;
 import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.service.WalkwayService;
-import com.wogebi.android.view.Topbar;
 
 /**
  * @deprecated 实现的功能已经移到MainActivity中, 仅作为参考保留

@@ -15,7 +15,7 @@ import com.dougfii.android.core.R;
 /**
  * Created by momo on 15/11/1.
  */
-public class TabPager extends HorizontalScrollView implements Pager {
+public class TabPager extends HorizontalScrollView implements IPager {
     private static final CharSequence EMPTY_TITLE = "";
 
     public interface OnTabReselectedListener {
@@ -177,9 +177,9 @@ public class TabPager extends HorizontalScrollView implements Pager {
     public void notifyDataSetChanged() {
         mTabLayout.removeAllViews();
         PagerAdapter adapter = mViewPager.getAdapter();
-        IconPagerAdapter iconAdapter = null;
-        if (adapter instanceof IconPagerAdapter) {
-            iconAdapter = (IconPagerAdapter) adapter;
+        IPagerIcon iconAdapter = null;
+        if (adapter instanceof IPagerIcon) {
+            iconAdapter = (IPagerIcon) adapter;
         }
         final int count = adapter.getCount();
         for (int i = 0; i < count; i++) {

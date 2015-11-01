@@ -14,10 +14,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dougfii.android.core.base.BaseFragment;
+import com.dougfii.android.core.view.rounded.RoundedImageView;
 import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
 import com.wogebi.android.model.Model;
-import com.wogebi.android.view.RoundedImageView;
 
 public class TabPersonalFragment extends BaseFragment<AppApplication> {
     private LinearLayout topbar;

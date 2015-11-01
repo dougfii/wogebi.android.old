@@ -12,9 +12,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.dougfii.android.core.base.BaseFragment;
+import com.dougfii.android.core.view.Topbar;
 import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
-import com.wogebi.android.view.Topbar;
 
 public class TabDiscoveryFragment extends BaseFragment<AppApplication> {
     public TabDiscoveryFragment() {

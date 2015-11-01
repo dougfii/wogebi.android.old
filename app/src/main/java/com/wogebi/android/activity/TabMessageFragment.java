@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dougfii.android.core.base.BaseFragment;
+import com.dougfii.android.core.view.Topbar;
 import com.wogebi.android.AppApplication;
 import com.wogebi.android.R;
-import com.wogebi.android.view.Topbar;
 
 public class TabMessageFragment extends BaseFragment<AppApplication> {
     public TabMessageFragment() {
